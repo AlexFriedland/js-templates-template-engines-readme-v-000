@@ -5,19 +5,29 @@ function postComment() {
   //<div class="comment"><p>comment</p><p>Posted By: <span class="commenter">commenter</span></p></div>
 
   //templateString
-  let commentTemplate = '<div class="comment"><p><%= comment %></p><p>Posted By: <span class="commenter"><%= commenter %></span></p></div>';
+  // let commentTemplate = '<div class="comment"><p><%= comment %></p><p>Posted By: <span class="commenter"><%= commenter %></span></p></div>';
+  //create template function
+  // let templateFn = _.template(commentTemplate);
+  // let commentsDiv = document.getElementById('comments');
+  // execute template fn w JSON object for interpolated values
+  // JSON obj:
+  // { 'comment': value, 'commenter': value }
+  // let templateHTML = templateFn({comment: comment, commenter: commenter});
+  //append, don't replace
+  // commentsDiv.innerHTML += templateHTML;
+
+  //create template string
+  let commentTemplate = document.getElementById('comment-template').innerHTML;
 
   //create template function
   let templateFn = _.template(commentTemplate);
 
   let commentsDiv = document.getElementById('comments');
 
-  // execute template fn w JSON object for interpolated values
-  // JSON obj:
-  // { 'comment': value, 'commenter': value }
+  //execute template function with JSON object for the interpolated values
+  let templateHTML = templateFn({ comment: comment, commenter: commenter });
 
-  let templateHTML = templateFn({comment: comment, commenter: commenter});
-
-  //append, don't replace
+  //append rather than replace!
   commentsDiv.innerHTML += templateHTML;
+
 }
